@@ -1,4 +1,5 @@
 //suny106
+
 public class main {
 
 	public static void main(String[] args) {
