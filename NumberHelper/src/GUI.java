@@ -18,6 +18,9 @@ public class GUI extends JFrame{
 	
 	public GUI() {
 		
+		// Create calculation
+		Calculation calc = new Calculation();
+		
 		// Create panels
 		JPanel topPanel = new JPanel();
 		JPanel bottomPanel = new JPanel();
@@ -54,9 +57,12 @@ public class GUI extends JFrame{
 		});
 		buttonEquals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Call other classes here based on what currently exists in inputArea
+				// Create calculation
+				Calculation calc = new Calculation();
+				calc.receive(inputArea.getText());
 				inputArea.setText("");
 				// TODO Those other classes called above should return the result, which is appended to inputArea here
+				inputArea.append(calc.getAnswer());
 			}
 		});
 		button1.addActionListener(new ActionListener() {
@@ -76,7 +82,7 @@ public class GUI extends JFrame{
 		});
 		buttonPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inputArea.append("+");
+				inputArea.append(" + ");
 			}
 		});
 		button4.addActionListener(new ActionListener() {
@@ -96,7 +102,7 @@ public class GUI extends JFrame{
 		});
 		buttonMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inputArea.append("-");
+				inputArea.append(" - ");
 			}
 		});
 		button7.addActionListener(new ActionListener() {
@@ -116,7 +122,7 @@ public class GUI extends JFrame{
 		});
 		buttonMultiply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inputArea.append("*");
+				inputArea.append(" * ");
 			}
 		});
 		buttonAdvanced.addActionListener(new ActionListener() {
@@ -136,7 +142,7 @@ public class GUI extends JFrame{
 		});
 		buttonDivide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inputArea.append("/");
+				inputArea.append(" / ");
 			}
 		});
 		
