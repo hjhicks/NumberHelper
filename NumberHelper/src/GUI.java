@@ -29,6 +29,7 @@ public class GUI extends JFrame{
 		// Create components for the top panel
 		JButton buttonClear = new JButton("Clear");
 		JTextArea inputArea = new JTextArea(2, 20);
+		inputArea.setEditable(false);
 		JButton buttonEquals = new JButton("  =  ");
 		
 		// Create components for the bottom panel
