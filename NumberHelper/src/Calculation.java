@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Calculation {
 	public String input;
 	public ArrayList<String> args = new ArrayList<String>();
-	public String operands = "+-*/^";
-	public String answer = "0";
+	public String operators = "+-*/^";
+	public String answer = "ERROR";
 	
 	public void receive(String input) {
 		this.input = input;
@@ -27,7 +27,7 @@ public class Calculation {
 		String operand = "";
 		ArrayList<Double> nums = new ArrayList<Double>();
 		for (String s : this.args) {
-			if (operands.contains(s)) {
+			if (operators.contains(s)) {
 				operand = s;
 			} else {
 				nums.add(Double.parseDouble(s));
