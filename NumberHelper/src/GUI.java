@@ -69,7 +69,7 @@ public class GUI extends JFrame{
 		JButton buttonZ = new JButton("z");
 		
 		
-		// Add functionality to the buttons
+		// Adding functionality to the buttons
 		buttonClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				inputArea.setText("");
@@ -147,7 +147,7 @@ public class GUI extends JFrame{
 		});
 		buttonAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO Aidan Becker, Iteration 3
+				// Adding all the advanced buttons to a newly resized window
 				bottomPanel.setLayout(new GridLayout(8, 4));
 				f.setSize(400, 515);
 				bottomPanel.add(buttonPi);
@@ -166,7 +166,6 @@ public class GUI extends JFrame{
 				bottomPanel.add(buttonX);
 				bottomPanel.add(buttonY);
 				bottomPanel.add(buttonZ);
-				
 			}
 		});
 		button0.addActionListener(new ActionListener() {
@@ -184,6 +183,89 @@ public class GUI extends JFrame{
 				inputArea.append(" / ");
 			}
 		});
+		
+		// Adding functionality to the advanced buttons
+		buttonPi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputArea.append("\u03c0");
+			}
+		});
+		buttonSin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputArea.append("sin(");
+			}
+		});
+		buttonCos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputArea.append("cos(");
+			}
+		});
+		buttonTan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputArea.append("tan(");
+			}
+		});
+		buttonE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputArea.append("e");
+			}
+		});
+		buttonExp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputArea.append("^");
+			}
+		});
+		buttonOpenPar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputArea.append("(");
+			}
+		});
+		buttonClosePar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputArea.append(")");
+			}
+		});
+		buttonLog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputArea.append("log(");
+			}
+		});
+		buttonSavX.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Zhengye Hua, Iteration 2
+			}
+		});
+		buttonSavY.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Zhengye Hua, Iteration 2
+			}
+		});
+		buttonSavZ.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Zhengye Hua, Iteration 2
+			}
+		});
+		buttonLn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputArea.append("ln(");
+			}
+		});
+		buttonX.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Zhengye Hua, Iteration 2
+			}
+		});
+		buttonY.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Zhengye Hua, Iteration 2
+			}
+		});
+		buttonZ.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Zhengye Hua, Iteration 2
+			}
+		});
+		
 		
 		// Add components to the top panel
 		topPanel.add(buttonClear);
