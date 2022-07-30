@@ -50,6 +50,25 @@ public class GUI extends JFrame{
 		JButton buttonDecimal = new JButton(".");
 		JButton buttonDivide = new JButton("/");
 		
+		// Create advanced components for the bottom panel
+		JButton buttonPi = new JButton("\u03c0");
+		JButton buttonSin = new JButton("sin");
+		JButton buttonCos = new JButton("cos");
+		JButton buttonTan = new JButton("tan");
+		JButton buttonE = new JButton("e");
+		JButton buttonExp = new JButton("^");
+		JButton buttonOpenPar = new JButton("(");
+		JButton buttonClosePar = new JButton(")");
+		JButton buttonLog = new JButton("log");
+		JButton buttonSavX = new JButton("Save x");
+		JButton buttonSavY = new JButton("Save y");
+		JButton buttonSavZ = new JButton("Save z");
+		JButton buttonLn = new JButton("ln");
+		JButton buttonX = new JButton("x");
+		JButton buttonY = new JButton("y");
+		JButton buttonZ = new JButton("z");
+		
+		
 		// Add functionality to the buttons
 		buttonClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -128,7 +147,26 @@ public class GUI extends JFrame{
 		});
 		buttonAdvanced.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO I have no idea how this will work right now
+				//TODO Aidan Becker, Iteration 3
+				bottomPanel.setLayout(new GridLayout(8, 4));
+				f.setSize(400, 515);
+				bottomPanel.add(buttonPi);
+				bottomPanel.add(buttonSin);
+				bottomPanel.add(buttonCos);
+				bottomPanel.add(buttonTan);
+				bottomPanel.add(buttonE);
+				bottomPanel.add(buttonExp);
+				bottomPanel.add(buttonOpenPar);
+				bottomPanel.add(buttonClosePar);
+				bottomPanel.add(buttonLog);
+				bottomPanel.add(buttonSavX);
+				bottomPanel.add(buttonSavY);
+				bottomPanel.add(buttonSavZ);
+				bottomPanel.add(buttonLn);
+				bottomPanel.add(buttonX);
+				bottomPanel.add(buttonY);
+				bottomPanel.add(buttonZ);
+				
 			}
 		});
 		button0.addActionListener(new ActionListener() {
