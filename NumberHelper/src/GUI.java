@@ -8,18 +8,20 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class GUI extends JFrame{
 	
 	private JFrame f = new JFrame("Number Helper");
+	protected String x = "0.0";
+	protected String y = "0.0";
+	protected String z = "0.0";
 	
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		GUI g = new GUI();
 	}
 	
 	public GUI() {
-		
-		// Create calculation
-		Calculation calc = new Calculation();
 		
 		// Create panels
 		JPanel topPanel = new JPanel();
@@ -149,7 +151,7 @@ public class GUI extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// Adding all the advanced buttons to a newly resized window
 				bottomPanel.setLayout(new GridLayout(8, 4));
-				f.setSize(400, 515);
+				f.setSize(500, 515);
 				bottomPanel.add(buttonPi);
 				bottomPanel.add(buttonSin);
 				bottomPanel.add(buttonCos);
@@ -212,7 +214,7 @@ public class GUI extends JFrame{
 		});
 		buttonExp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				inputArea.append("^");
+				inputArea.append(" ^ ");
 			}
 		});
 		buttonOpenPar.addActionListener(new ActionListener() {
@@ -232,17 +234,17 @@ public class GUI extends JFrame{
 		});
 		buttonSavX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Zhengye Hua, Iteration 2
+				GUI.this.x = inputArea.getText();
 			}
 		});
 		buttonSavY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Zhengye Hua, Iteration 2
+				GUI.this.y = inputArea.getText();
 			}
 		});
 		buttonSavZ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Zhengye Hua, Iteration 2
+				GUI.this.z = inputArea.getText();
 			}
 		});
 		buttonLn.addActionListener(new ActionListener() {
@@ -252,17 +254,17 @@ public class GUI extends JFrame{
 		});
 		buttonX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Zhengye Hua, Iteration 2
+				inputArea.append(GUI.this.x);
 			}
 		});
 		buttonY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Zhengye Hua, Iteration 2
+				inputArea.append(GUI.this.y);
 			}
 		});
 		buttonZ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO Zhengye Hua, Iteration 2
+				inputArea.append(GUI.this.z);
 			}
 		});
 		
