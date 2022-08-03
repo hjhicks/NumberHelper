@@ -294,7 +294,7 @@ public class GUI extends JFrame{
 		f.add(bottomPanel, BorderLayout.CENTER);
 		
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(400, 300);
+		f.setSize(500, 300);
 		f.setVisible(true);
 	}
 

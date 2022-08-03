@@ -29,6 +29,10 @@ public class Calculation {
 		for (String s : this.args) {
 			if (operators.contains(s)) {
 				operand = s;
+			} else if (s.equals("e")) {
+				nums.add(Math.E);
+			} else if (s.equals("\u03c0")) {
+				nums.add(Math.PI);
 			} else {
 				nums.add(Double.parseDouble(s));
 			}
