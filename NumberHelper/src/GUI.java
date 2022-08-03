@@ -2,38 +2,53 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class GUI extends JFrame{
-	
+public class GUI extends JFrame {
+
 	private JFrame f = new JFrame("Number Helper");
 	protected String x = "0.0";
 	protected String y = "0.0";
 	protected String z = "0.0";
-	
+	private FileWriter writer;
+	private File history;
+
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		GUI g = new GUI();
 	}
-	
+
 	public GUI() {
-		
+//		ShutDownHook end = new ShutDownHook();
+//		Runtime.getRuntime().addShutdownHook(end);
+
+		try {
+			this.history = new File("history.txt");
+			history.createNewFile();
+
+			history.deleteOnExit();
+		} catch (IOException e) {
+			new Error();
+		}
+
 		// Create panels
 		JPanel topPanel = new JPanel();
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new GridLayout(4, 4));
-		
+
 		// Create components for the top panel
 		JButton buttonClear = new JButton("Clear");
 		JTextArea inputArea = new JTextArea(2, 20);
 		inputArea.setEditable(false);
 		JButton buttonEquals = new JButton("  =  ");
-		
+
 		// Create components for the bottom panel
 		JButton button1 = new JButton("1");
 		JButton button2 = new JButton("2");
@@ -51,7 +66,7 @@ public class GUI extends JFrame{
 		JButton button0 = new JButton("0");
 		JButton buttonDecimal = new JButton(".");
 		JButton buttonDivide = new JButton("/");
-		
+
 		// Create advanced components for the bottom panel
 		JButton buttonPi = new JButton("\u03c0");
 		JButton buttonSin = new JButton("sin");
@@ -69,8 +84,7 @@ public class GUI extends JFrame{
 		JButton buttonX = new JButton("x");
 		JButton buttonY = new JButton("y");
 		JButton buttonZ = new JButton("z");
-		
-		
+
 		// Adding functionality to the buttons
 		buttonClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -79,12 +93,23 @@ public class GUI extends JFrame{
 		});
 		buttonEquals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				// Create calculation
 				Calculation calc = new Calculation();
-				calc.receive(inputArea.getText());
+				String in = inputArea.getText();
+				calc.receive(in);
 				inputArea.setText("");
-				// TODO Those other classes called above should return the result, which is appended to inputArea here
-				inputArea.append(calc.getAnswer());
+				// TODO Those other classes called above should return the result, which is
+				// appended to inputArea here
+				String ans = calc.getAnswer();
+				try {
+					GUI.this.writer = new FileWriter("history.txt", true);
+					GUI.this.writer.write(in + " = " + ans + "\n");
+					GUI.this.writer.close();
+				} catch (IOException e1) {
+					new Error();
+				}
+				inputArea.append(ans);
 			}
 		});
 		button1.addActionListener(new ActionListener() {
@@ -185,7 +210,7 @@ public class GUI extends JFrame{
 				inputArea.append(" / ");
 			}
 		});
-		
+
 		// Adding functionality to the advanced buttons
 		buttonPi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -267,13 +292,12 @@ public class GUI extends JFrame{
 				inputArea.append(GUI.this.z);
 			}
 		});
-		
-		
+
 		// Add components to the top panel
 		topPanel.add(buttonClear);
 		topPanel.add(inputArea);
 		topPanel.add(buttonEquals);
-		
+
 		// Add components to the bottom panel
 		bottomPanel.add(button1);
 		bottomPanel.add(button2);
@@ -291,13 +315,20 @@ public class GUI extends JFrame{
 		bottomPanel.add(button0);
 		bottomPanel.add(buttonDecimal);
 		bottomPanel.add(buttonDivide);
-		
+
 		f.add(topPanel, BorderLayout.NORTH);
 		f.add(bottomPanel, BorderLayout.CENTER);
-		
+
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(500, 300);
 		f.setVisible(true);
+
 	}
 
+//	private static class ShutDownHook extends Thread {
+//		@Override
+//		public void run() {
+//			System.out.println("Shutting down");
+//		}
+//	}
 }
