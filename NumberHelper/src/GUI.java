@@ -1,12 +1,18 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JToolBar;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,6 +57,12 @@ public class GUI extends JFrame {
 		JButton buttonBasicUser = new JButton("Basic");
 		JButton buttonAdvUser = new JButton("Advanced");
 		JLabel startLabel = new JLabel("Select a Calculator Version");
+		
+		// Create JMenu components for the calculator frame
+		JMenuBar mb = new JMenuBar();
+		JMenuItem history = new JMenuItem("History");
+		JMenuItem help = new JMenuItem("Help");
+		mb.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 		// Create components for the top panel
 		JButton buttonClear = new JButton("Clear");
@@ -106,6 +118,20 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				start.setVisible(false);
 				f.setVisible(true);
+			}
+		});
+		history.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// TODO Allow the user to view their calculation history
+				
+			}
+		});
+		help.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// TODO Add user documentation here
+				
 			}
 		});
 		buttonClear.addActionListener(new ActionListener() {
@@ -198,7 +224,7 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Adding all the advanced buttons to a newly resized window
 				bottomPanel.setLayout(new GridLayout(8, 4));
-				f.setSize(500, 515);
+				f.setSize(500, 545);
 				bottomPanel.add(buttonPi);
 				bottomPanel.add(buttonSin);
 				bottomPanel.add(buttonCos);
@@ -315,7 +341,7 @@ public class GUI extends JFrame {
 			}
 		});
 		
-		// Add components to the panels
+		// Add components to the panels and menu bar
 		startTopPanel.add(startLabel);
 		startBottomPanel.add(buttonBasicUser);
 		startBottomPanel.add(buttonAdvUser);
@@ -338,17 +364,20 @@ public class GUI extends JFrame {
 		bottomPanel.add(button0);
 		bottomPanel.add(buttonDecimal);
 		bottomPanel.add(buttonDivide);
+		mb.add(history);
+		mb.add(help);
 		
-		// Add panels to frames, and set default for the frames
+		// Add components to frames, and set default for the frames
 		start.add(startTopPanel, BorderLayout.NORTH);
 		start.add(startBottomPanel, BorderLayout.CENTER);
 		start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		start.setSize(250, 125);
 		start.setVisible(true);
+		f.setJMenuBar(mb);
 		f.add(topPanel, BorderLayout.NORTH);
 		f.add(bottomPanel, BorderLayout.CENTER);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(500, 300);
+		f.setSize(500, 330);
 	}
 
 //	private static class ShutDownHook extends Thread {
