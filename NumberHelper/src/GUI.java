@@ -1,5 +1,6 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import java.io.File;
@@ -14,6 +15,7 @@ import java.awt.event.ActionListener;
 public class GUI extends JFrame {
 
 	private JFrame f = new JFrame("Number Helper");
+	private JFrame start = new JFrame("NH");
 	protected String x = "0.0";
 	protected String y = "0.0";
 	protected String z = "0.0";
@@ -39,9 +41,16 @@ public class GUI extends JFrame {
 		}
 
 		// Create panels
+		JPanel startTopPanel = new JPanel();
+		JPanel startBottomPanel = new JPanel();
 		JPanel topPanel = new JPanel();
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new GridLayout(4, 4));
+		
+		// Create components for the start panel
+		JButton buttonBasicUser = new JButton("Basic");
+		JButton buttonAdvUser = new JButton("Advanced");
+		JLabel startLabel = new JLabel("Select a Calculator Version");
 
 		// Create components for the top panel
 		JButton buttonClear = new JButton("Clear");
@@ -86,6 +95,19 @@ public class GUI extends JFrame {
 		JButton buttonZ = new JButton("z");
 
 		// Adding functionality to the buttons
+		buttonBasicUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				start.setVisible(false);
+				buttonAdvanced.setEnabled(false);
+				f.setVisible(true);
+			}
+		});
+		buttonAdvUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				start.setVisible(false);
+				f.setVisible(true);
+			}
+		});
 		buttonClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				inputArea.setText("");
@@ -292,13 +314,14 @@ public class GUI extends JFrame {
 				inputArea.append(GUI.this.z);
 			}
 		});
-
-		// Add components to the top panel
+		
+		// Add components to the panels
+		startTopPanel.add(startLabel);
+		startBottomPanel.add(buttonBasicUser);
+		startBottomPanel.add(buttonAdvUser);
 		topPanel.add(buttonClear);
 		topPanel.add(inputArea);
 		topPanel.add(buttonEquals);
-
-		// Add components to the bottom panel
 		bottomPanel.add(button1);
 		bottomPanel.add(button2);
 		bottomPanel.add(button3);
@@ -315,14 +338,17 @@ public class GUI extends JFrame {
 		bottomPanel.add(button0);
 		bottomPanel.add(buttonDecimal);
 		bottomPanel.add(buttonDivide);
-
+		
+		// Add panels to frames, and set default for the frames
+		start.add(startTopPanel, BorderLayout.NORTH);
+		start.add(startBottomPanel, BorderLayout.CENTER);
+		start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		start.setSize(250, 125);
+		start.setVisible(true);
 		f.add(topPanel, BorderLayout.NORTH);
 		f.add(bottomPanel, BorderLayout.CENTER);
-
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(500, 300);
-		f.setVisible(true);
-
 	}
 
 //	private static class ShutDownHook extends Thread {
