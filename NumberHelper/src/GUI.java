@@ -9,8 +9,10 @@ import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -34,8 +36,7 @@ public class GUI extends JFrame {
 	}
 
 	public GUI() {
-//		ShutDownHook end = new ShutDownHook();
-//		Runtime.getRuntime().addShutdownHook(end);
+		
 
 		try {
 			this.history = new File("history.txt");
@@ -45,7 +46,8 @@ public class GUI extends JFrame {
 		} catch (IOException e) {
 			new Error();
 		}
-
+		ShutDownHook end = new ShutDownHook(this.history);
+		Runtime.getRuntime().addShutdownHook(end);
 		// Create panels
 		JPanel startTopPanel = new JPanel();
 		JPanel startBottomPanel = new JPanel();
@@ -109,22 +111,22 @@ public class GUI extends JFrame {
 		// Adding functionality to the buttons
 		buttonBasicUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				start.setVisible(false);
+//				start.setVisible(false);
 				buttonAdvanced.setEnabled(false);
+				start.dispose();
 				f.setVisible(true);
 			}
 		});
 		buttonAdvUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				start.setVisible(false);
+//				start.setVisible(false);
+				start.dispose();
 				f.setVisible(true);
 			}
 		});
 		history.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				// TODO Allow the user to view their calculation history
-				
+				new History(GUI.this.history);
 			}
 		});
 		help.addActionListener(new ActionListener() {
@@ -380,10 +382,14 @@ public class GUI extends JFrame {
 		f.setSize(500, 330);
 	}
 
-//	private static class ShutDownHook extends Thread {
-//		@Override
-//		public void run() {
-//			System.out.println("Shutting down");
-//		}
-//	}
+	private static class ShutDownHook extends Thread {
+		private File history;
+		public ShutDownHook(File history) {
+			this.history = history;
+		}
+		@Override
+		public void run() {
+			this.history.delete();
+		}
+	}
 }

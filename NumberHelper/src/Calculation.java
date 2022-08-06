@@ -2,11 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Calculation {
-	public String input;
-	public ArrayList<String> args = new ArrayList<String>();
-	public ArrayList<String> expressions = new ArrayList<String>(
-			Arrays.asList("cos", "sin", "tan", "ln", "log"));
-	public String operators = "+-*/^";
+	private String input;
+	private ArrayList<String> args = new ArrayList<String>();
+	private String operators = "+-*/^";
 	public String answer = "ERROR";
 
 	public void receive(String input) {
@@ -34,7 +32,14 @@ public class Calculation {
 	}
 	
 	private double expStart() {
-		double input = Double.parseDouble(args.get(0));
+		double input = 0.0;
+		if (args.get(0).equals("e")) {
+			input = Math.E;
+		} else if (args.get(0).equals("\u03c0")) {
+			input = Math.PI;
+		} else {
+			input = Double.parseDouble(args.get(0));
+		}
 		double deg2Rad = Math.toRadians(input);
 		switch (args.get(1)) {
 		case "cos":

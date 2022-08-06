@@ -10,7 +10,7 @@ public class Error {
 
 	public Error() {
 		
-		JFrame f = new JFrame();
+		JFrame f = new JFrame("Error");
 		JLabel message = new JLabel("   An error has occured, press \"Okay\" to close program   ");
 		JButton okay = new JButton("Okay");
 		okay.addActionListener(new ActionListener() {
