@@ -1,12 +1,22 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * @author hickshj
+ *
+ */
 public class Calculation {
 	private String input;
 	private ArrayList<String> args = new ArrayList<String>();
 	private String operators = "+-*/^";
 	public String answer = "ERROR";
 
+	/**
+	 * Begins processing the input
+	 * 
+	 * @param input
+	 *
+	 */
 	public void receive(String input) {
 		this.input = input;
 		if (input.contains("cos") || input.contains("sin") || input.contains("tan") ||
@@ -22,6 +32,11 @@ public class Calculation {
 		}
 	}
 	
+	/**
+	 * Parses inputs with expressions
+	 * 
+	 * @param input
+	 */
 	private void parseExp(String input) {
 		int start = input.indexOf('(');
 		int end = input.indexOf(')');
@@ -30,7 +45,11 @@ public class Calculation {
 		args.add(input.substring(0, start));
 		
 	}
-	
+	/**
+	 * Makes the calculation with expressions
+	 * 
+	 * @return calculated value
+	 */
 	private double expStart() {
 		double input = 0.0;
 		if (args.get(0).equals("e")) {
@@ -57,6 +76,11 @@ public class Calculation {
 		}
 	}
 
+	/**
+	 * Parses arithmetic
+	 * 
+	 * @param input
+	 */
 	private void parse(String input) {
 		int breaker = input.indexOf(' ');
 		if (breaker == -1) {
@@ -100,6 +124,11 @@ public class Calculation {
 		}
 	}
 
+	/**
+	 * Getter for answer
+	 * 
+	 * @return this.answer
+	 */
 	public String getAnswer() {
 		return this.answer;
 	}
